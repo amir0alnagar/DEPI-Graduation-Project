@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\{Factories\HasFactory , SoftDeletes  };
 use Illuminate\Database\Eloquent\Model;
-class category extends Model
+
+class Category extends Model
 {
     use HasFactory , SoftDeletes;
-    protected $guarded = [];
-
     public function create_user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'create_user_id' , 'id');
@@ -19,5 +18,4 @@ class category extends Model
     {
         return $this->belongsTo(User::class, 'update_user_id' , 'id');
     }
-
 }

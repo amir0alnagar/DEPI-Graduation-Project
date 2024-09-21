@@ -12,7 +12,7 @@
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item active"><a class="nav-link" href="{{route("home")}}">{{ __('website/navbar.home')}}</a></li>
 						<li><a class="nav-link" href="{{route("shop")}}" >{{ __('website/navbar.shop')}}</a></li>
-						<li><a class="nav-link"  href="{{route("about")}}">{{ __('website/navbar.about')}}</a></li>
+						<li><a class="nav-link" href="{{route("about")}}">{{ __('website/navbar.about')}}</a></li>
 						<li><a class="nav-link" href="{{route("services")}}">{{ __('website/navbar.home')}}</a></li>
 						<li><a class="nav-link" href="{{route("blog")}}">{{ __('website/navbar.blog')}}</a></li>
 						<li><a class="nav-link" href="{{route("contact_us")}}">{{ __('website/navbar.contact')}}</a></li>
@@ -47,7 +47,7 @@
                                 </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                        {{ __('website/navbar.logout')}}
+                                    {{ __('website/navbar.logout')}}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

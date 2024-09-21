@@ -1,6 +1,6 @@
-@extends('dashobard.layouts.master')
+@extends('dashbaord.layouts.master')
 @section('title' , 'Deleted Categories')
-@section('main-content')
+@section('content')
 <table class="table w-50 m-auto mt-4 datatable">
     <thead>
     <tr>
@@ -24,7 +24,7 @@
             <td>{{ $category->title }}</td>
             <td>{{Str::words($category->description , '5', '....') ?? 'N/A' }}</td>
             <td>{{ $category->create_user->name  }}</td>
-            <td>{{ $category->update_user_name ?? 'N/A' }}</td>
+            <td>{{ $category->update_user->name ?? 'N/A' }}</td>
             <td>{{ $category->created_at }}</td>
             <td>{{ $category->updated_at ?? 'N/A'}}</td>
             <td>{{ $category->deleted_at ?? 'N/A'}}</td>

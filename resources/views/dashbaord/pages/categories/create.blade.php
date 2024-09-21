@@ -1,7 +1,7 @@
-@extends('dashobard.layouts.master')
+@extends('dashbaord.layouts.master')
 @section('title' , 'Create Category')
 @inject('category', 'App\Models\Category')
-@section('main-content')
+@section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -14,7 +14,7 @@
                             <div class="col-md-12">
                                 <form action="{{ route('categories.store') }}" method="POST">
                                     @csrf
-                                        @include('dashobard.pages.categories.form')
+                                        @include('dashbaord.includes.form')
                                         <button type="submit" class="btn btn-success btn-md py-1 font-weight-bold fs-5 border-2 border-dark rounded">Submit</button>
                                         <button type="Reset" class="btn btn-secondary btn-md py-1 font-weight-bold fs-5 border-2 border-dark rounded">Reset</button>
                                 </form>

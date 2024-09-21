@@ -1,6 +1,6 @@
-@extends('dashobard.layouts.master')
+@extends('dashbaoard.layouts.master')
 @section('title' , 'Category - 404')
-@section('main-content')
+@section('content')
 <main>
 <div class="container">
 

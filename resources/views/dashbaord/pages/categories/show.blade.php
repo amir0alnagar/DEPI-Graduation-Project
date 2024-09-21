@@ -1,11 +1,11 @@
-@extends('dashobard.layouts.master')
+@extends('dashbaord.layouts.master')
 @section('title' , "Category ($category->title)")
-@section('main-content')
+@section('content')
 <div class="container text-center my-3 mb-2 single-category">
     <div class="bg-dark  w-75 mx-auto shadow-lg rounded p-5">
         <h2 class="badge text-bg-light text-info fs-1">{{ $category->id }}</h2>
-        <h3 class="border border-info bg-light rounded  w-25 m-auto text-primary fs-1">{{ $category->title }}</h3>
-        <p class="text-warning  fs-1">{{ $category->description }}</p>
+        <h3 class="border border-info bg-light rounded  w-50 m-auto text-primary fs-1">{{ $category->title }}</h3>
+        <p class="text-warning fs-3">{{ $category->description }}</p>
         <div>
             <form method="post">
                 @csrf

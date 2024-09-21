@@ -1,6 +1,6 @@
-@extends('dashobard.layouts.master')
+@extends('dashbaord.layouts.master')
 @section('title' , "Edit Category ($category->title)")
-@section('main-content')
+@section('content')
 <div class="container  mt-4">
     <div class="row justidy-content-center">
         <div class="col-12">
@@ -14,7 +14,7 @@
                             <form action="{{ route('categories.update' , $category->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
-                                @include('dashobard.pages.categories.form')
+                                @include('dashbaord.includes.form')
                                 <button type="submit" class="btn btn-primary px-4 btn-md borderd-2 shadow rounded">Update</button>
                             <a class="btn btn-dark btn-md px-2 py-2 font-weight-bold fs-6 shadow borderd-2 rounded" href="{{ route('categories.index') }}">Return To Categories </a>
                             <a class="btn btn- btn-md px-2 py-2 font-weight-bold fs-6 shadow borderd-2 rounded" href="{{ url()->previous() }}">Go Back</a>

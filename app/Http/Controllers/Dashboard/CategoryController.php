@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
-use App\Models\category;
+namespace App\Http\Controllers\Dashboard;
+
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Redirect;
+
 class CategoryController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class CategoryController extends Controller
     {
         //
         $categories = category::orderBy('id' , 'desc')->simplePaginate(4);
-        return view('dashobard.pages.categories.index ' , compact('categories'));
+
+        return view('dashbaord.pages.categories.index',compact('categories'));
     }
 
     /**
@@ -23,7 +25,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('dashobard.pages.categories.create');
+        return view('dashbaord.pages.categories.create');
     }
 
     /**
@@ -31,51 +33,52 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'title'          => 'required|string|unique:categories,title|max:255',
             'description'    => 'nullable|string|max:1020',
             'create_user_id' => 'nullable|exists:users,id',
             'update_user_id' => 'nullable|exists:users,id',
         ]);
-        //Create
-        $category        = new category();
+
+        $category        = new Category();
         $category->title = $request->title;
         $category->description = $request->description;
         $category->create_user_id = auth()->user()->id;
         $category->update_user_id    = null;
         $category->save();
         return redirect()->route('categories.index')->with('Created_Category_Successfully',"The Category ($category->title) has been Created Successfully");
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show( $id)
     {
         $category = category::find($id);
         if($category == null){
-            return view('dashobard.pages.categories.404.category-404');
+            return view('dashbaord.pages.categories.404.category-404');
         }
-        return view('dashobard.pages.categories.show' , compact('category'));
+        return view('dashbaord.pages.categories.show' , compact('category'));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( int $id)
+    public function edit( $id)
     {
-        $category = category::find($id);
+         $category = category::find($id);
         if($category == null){
-            return view('dashobard.pages.categories.404.category-404');
+            return view('dashbaord.pages.categories.404.category-404');
         }
         else{
             if(auth()->user()->user_type  == "admin"){
-                return view('dashobard.pages.categories.edit' , compact('category'));
+                return view('dashbaord.pages.categories.edit' , compact('category'))->with('updated_category_successfully',"The Category ($category->title) has been Updated Successfully");
             }
             else{
-                return view('dashobard.pages.categories.404.category-404');
+                return view('dashbaord.pages.categories.404.category-404');
             }
         }
     }
@@ -83,9 +86,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
-            $request->validate([
+        $request->validate([
                 'title' => 'required|string|max:255',
                 'description' => 'nullable|string|max:1020',
                 'create_user_id' => 'nullable|exists:users,id',
@@ -104,25 +107,23 @@ class CategoryController extends Controller
             $category->description = $request->description;
             $category->update_user_id = auth()->user()->id;
             $category->save();
-            return redirect()->route('categories.index');
+            return redirect()->route('categories.index')->with('updated_category_successfully',"The Category ($category->title) has been updated Successfully");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+     public function destroy($id)
     {
         $category = category::find($id);
         $category->delete();
 
-        return redirect()->route('categories.delete');
+        return redirect()->route('categories.index')->with('softDeleted_category_successfully',"The Category ($category->title) has been softDeleted Successfully");
     }
-
-    //delete Function
     public function delete(){
         $categories = category::orderBy('id' , 'desc')->onlyTrashed()->simplePaginate(4);
         $categories_count = $categories->count();
-        return view('dashobard.pages.categories.delete' , compact('categories' , 'categories_count'));
+        return view('dashbaord.pages.categories.delete' , compact('categories' , 'categories_count'));
     }
 
     public function restore($id){
@@ -131,11 +132,11 @@ class CategoryController extends Controller
         $category = category::findOrFail($id);
         $category->update_user_id = auth()->user()->id;
         $category->save();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('softDeleted_category_successfully',"The Category ($category->title) has been restored Successfully");
 }
     public function forceDelete($id){
         $category = category::where('id' , $id);
         $category->forceDelete();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('forceDeleted_category_successfully',"That Category has been forcedeleted Successfully");
     }
 }

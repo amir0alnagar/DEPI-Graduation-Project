@@ -67,13 +67,18 @@
         </a>
         <ul id="category" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="{{route('categories.index')}}">
               <i class="fa-solid fa-address-book fs-6"></i></i><span>Index</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="{{route('categories.create')}}">
               <i class="fa-solid fa-user-plus fs-6"></i><span>Create</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('categories.delete')}}">
+              <i class="fa-solid fa-trash fs-6"></i><span>Deleted</span>
             </a>
           </li>
         </ul>
@@ -96,37 +101,13 @@
         </ul>
       </li><!-- End Sub_Category Nav -->
 
-   {{-- Category  --}}
-   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#category" data-bs-toggle="collapse" href="#">
-    <i class="bi bi-menu-button-wide"></i><span>Categories</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="category" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-            <a href="{{ route('categories') }}">
-                <i class="fa-solid fa-user-tie fs-5"></i><span>Index</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('categories.create') }}">
-                <i class="fa-brands fa-monero fs-5"></i><span>Create</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('categories.delete') }}">
-                <i class="fa-solid fa-trash-alt p-1 fs-4" ></i><span>Trash</span>
-            </a>
-        </li>
-    </ul>
-</li>
-  {{-- Category  end sara  --}}
 
 
 
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('/resources/views/dashbaord/pages/profile.blade.php') }}">
+        <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
