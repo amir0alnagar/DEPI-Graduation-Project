@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardMainController;
+use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\website\AboutController;
 use App\Http\Controllers\website\BlogController;
 use App\Http\Controllers\website\CartController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\website\ContactController;
 use App\Http\Controllers\website\HomeController;
 use App\Http\Controllers\website\ServicesController;
 use App\Http\Controllers\website\ShopController;
+
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -52,6 +54,11 @@ Route::get('/app', [CartController::class, 'app'])->name('app');
                 Route::get('/category/delete' , [CategoryController::class , 'delete'])->name('categories.delete');
                 Route::get('/category/restore/{id}' ,[CategoryController::class , 'restore'])->name('categories.restore');
                 Route::delete('/category/forceDelete/{id}' , [CategoryController::class , 'forceDelete'])->name('categories.forceDelete');
+                ///////////////////////////
+                Route::resource('/subcategories', SubCategoryController::class);
+                Route::get('/subcategory/delete' , [SubCategoryController::class , 'delete'])->name('subcategories.delete');
+                Route::get('/subcategory/restore/{id}' ,[SubCategoryController::class , 'restore'])->name('subcategories.restore');
+                Route::delete('/subcategory/forceDelete/{id}' , [SubCategoryController::class , 'forceDelete'])->name('Subcategories.forceDelete');
                 });
         });
 });

@@ -89,12 +89,12 @@
         </a>
         <ul id="sub_category" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="{{route('subcategories.index')}}">
               <i class="fa-solid fa-address-book fs-6"></i></i><span>Index</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="{{route('subcategories.create')}}">
               <i class="fa-solid fa-user-plus fs-6"></i><span>Create</span>
             </a>
           </li>
