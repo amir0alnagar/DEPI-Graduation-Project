@@ -12,9 +12,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="{{ route('subcategories.store') }}" method="POST">
+                                <form action="{{ route('subcategory.store') }}" method="POST">
                                     @csrf
-                                        @include('dashbaord.includes.form')
+                                        @include('dashbaord.pages.subcategory.create')
                                         <button type="submit" class="btn btn-success btn-md py-1 font-weight-bold fs-5 border-2 border-dark rounded">Submit</button>
                                         <button type="Reset" class="btn btn-secondary btn-md py-1 font-weight-bold fs-5 border-2 border-dark rounded">Reset</button>
                                 </form>

@@ -1,11 +1,11 @@
 @extends('dashbaord.layouts.master')
-@section('title','subcategories')
+@section('title','subcategory')
 @section('content')
 <div class="row">
             <div class="col-md-12 grid-margin">
                 <div class="d-flex justify-content-end flex-wrap">
                     <div class="d-flex justify-contnet-between align-items-end flex-wrap">
-                        <a href="{{ route('subcategories.create') }}" class="mx-3 mt-3 btn btn-success text-light font-weight-bold">
+                        <a href="{{ route('subcategory.create') }}" class="mx-3 mt-3 btn btn-success text-light font-weight-bold">
                             <span>Add subcategory</span>
                         </a>
                     </div>
@@ -14,13 +14,13 @@
         </div>
         @include('dashbaord.pages.subcategory.massages.massages')
          <!-- Table with stripped rows -->
-           <table class="table w-50 m-auto datatable">
+           <table class="table w-75 m-auto datatable">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Category</th>
+                <th>Category name</th>
                 <th>Created By</th>
                 <th>Updated By</th>
                 <th>Created at</th>
@@ -34,6 +34,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $subcategory->title }}</td>
                         <td>{{Str::words($subcategory->description , '5', '....') ?? 'N/A' }}</td>
+                        <td>{{ $subcategory->category->title }}</td>
                         <td>{{ $subcategory->create_user->name ?? 'N/A' }}</td>
                         <td>{{ $subcategory->update_user->name ?? 'N/A' }}</td>
                         <td>{{ $subcategory->created_at }}</td>

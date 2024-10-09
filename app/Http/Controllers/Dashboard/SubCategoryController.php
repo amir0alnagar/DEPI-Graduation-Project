@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Dashboard;
-
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory ;
 use Illuminate\Http\Request;
@@ -12,11 +11,10 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
-        
-        $subcategories = SubCategory::orderBy('id' , 'desc')->simplePaginate(4);
 
-        return view('dashbaord.pages.subcategory.index',compact('subcategories'));
+        $subcategories = SubCategory::all();
+
+        return view('dashbaord.pages.subcategory.index', compact('subcategory'));
     }
 
     /**
@@ -24,7 +22,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = \App\Models\Category::all();
+        return view('dashbaord.pages.subcategory.create',compact('categories'));
         return view('dashbaord.pages.subcategory.create');
     }
 
@@ -93,7 +92,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, string $id)
     {
             //
-              $request->validate([
+$request->validate([
                 'title' => 'required|string|max:255',
                 'description' => 'nullable|string|max:1020',
                 'create_user_id' => 'nullable|exists:users,id',
@@ -113,7 +112,7 @@ class SubCategoryController extends Controller
             $subcategory->update_user_id = auth()->user()->id;
             $subcategory->save();
             return redirect()->route('subcategories.index')->with('updated_subcategory_successfully',"The subcategory ($subcategory->title) has been updated Successfully");
-   
+
 
     }
 
@@ -127,7 +126,7 @@ class SubCategoryController extends Controller
         $subcategory->delete();
 
         return redirect()->route('categories.index')->with('softDeleted_subcategory_successfully',"The subcategory ($subcategory->title) has been softDeleted Successfully");
-    
+
     }
     public function delete(){
         $categories = SubCategory::orderBy('id' , 'desc')->onlyTrashed()->simplePaginate(4);

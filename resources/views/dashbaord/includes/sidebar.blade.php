@@ -83,18 +83,19 @@
           </li>
         </ul>
       </li><!-- End Category Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#sub_category" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Sub Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="sub_category" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{route('subcategories.index')}}">
+            <a href="{{route('subcategory.index')}}">
               <i class="fa-solid fa-address-book fs-6"></i></i><span>Index</span>
             </a>
           </li>
           <li>
-            <a href="{{route('subcategories.create')}}">
+            <a href="{{route('subcategory.create')}}">
               <i class="fa-solid fa-user-plus fs-6"></i><span>Create</span>
             </a>
           </li>
