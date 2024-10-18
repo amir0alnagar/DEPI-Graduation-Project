@@ -1,4 +1,4 @@
-@extends('dashbaoard.layouts.master')
+@extends('dashbaord.layouts.master')
 @section('title' , 'Subcategories - 404')
 @section('content')
 <main>
@@ -7,7 +7,7 @@
     <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
     <h1>404</h1>
     <h2>The page you are looking for doesn't exist.</h2>
-    <a class="btn" href="index.html">Back to home</a>
+    <a class="btn" href="{{ url()->previous() }}">Back to home</a>
     <img src="assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
     <div class="credits">
         <!-- All the links in the footer should remain intact. -->

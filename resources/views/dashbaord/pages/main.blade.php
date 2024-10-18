@@ -1,7 +1,6 @@
 @extends('dashbaord.layouts.master')
 @section("content")
 
-    <main id="main" class="main">
         <div class="pagetitle">
       <h1>Dashboard</h1>
     </div>
@@ -228,7 +227,6 @@
             </div><!-- End Customers Card -->
           </div>
         </section>
-    </main>
 
 
 @endsection

@@ -1,6 +1,8 @@
 @extends('dashbaord.layouts.master')
-@section('title' , 'Deleted SubCategory')
+@section('title' , 'Deleted SubCategories')
 @section('content')
+<div class="table-responsive">
+
 <table class="table w-50 m-auto mt-4 datatable">
     <thead>
     <tr>
@@ -33,12 +35,12 @@
             <td class="text-center">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <form action="{{ route('Subcategories.restore' , $subcategory->id) }}" method="GET">
+                        <form action="{{ route('subcategories.restore' , $subcategory->id) }}" method="GET">
                             <button type="submit" class="btn btn-success btn-sm font-weight-bold fs-6 mx-1">Restore</button>
                         </form>
                     </div>
                     <div>
-                        <form action="{{ route('Subcategories.forceDelete' , $subcategory->id) }}" method="post">
+                        <form action="{{ route('subcategories.forceDelete' , $subcategory->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm font-weight-bold fs-6 mx-1">Delete From Trash</button>
@@ -49,11 +51,12 @@
             @endif
         </tr>
         @empty
-        <div class="alert alert-danger text-center my-5 w-75 mx-auto">
+        <div class="alert alert-danger text-center my-5 w-100 mx-auto">
             <span class="h6"> There Are No Deleted subcategory Yet!</span>
         </div>
         @endforelse
 </table>
+</div>
 <div class="my-4 my-4 d-flex justify-content-center">
     {{ $subcategories->links() }}
 </div>

@@ -1,6 +1,7 @@
 @extends('website.layouts.master')
-@section("hero_title" , "Contact Us")
-
+@section("hero_title" , "Contact us to order")
+@section("hero_description" , "Fill out the form and we will contact you to complete the rest of the purchase procedures.")
+@inject('user',"App\Models\User" )
 @section("content")
 
 
@@ -56,46 +57,76 @@
                 </div>
               </div>
 
-              <form>
+              <form method="POST"  action="{{ route('contact.store') }}">
+                @csrf
                 <div class="row">
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="fname">First name</label>
-                      <input type="text" class="form-control" id="fname">
+                      <label class="text-black" for="name">Name</label>
+                      <input type="text" name="name" class="form-control" id="name" @error('name') is-invalid  @enderror placeholder="enter your name">
                     </div>
+                    @error('name')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
                   </div>
                   <div class="col-6">
                     <div class="form-group">
-                      <label class="text-black" for="lname">Last name</label>
-                      <input type="text" class="form-control" id="lname">
+                      <label class="text-black" for="lname">Email</label>
+                      <input type="email" name="email" class="form-control" id="email" @error('email') is-invalid  @enderror placeholder="enter your Email">
                     </div>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
                   </div>
                 </div>
+                <div class="row">
+                    <div class="col-4">
                 <div class="form-group">
-                  <label class="text-black" for="email">Email address</label>
-                  <input type="email" class="form-control" id="email">
+                  <label class="text-black" for="Phone">Phone</label>
+                  <input type="text" name="phone" class="form-control" id="phone" @error('phone') is-invalid  @enderror placeholder="enter your phone">
+                </div>
+                @error('phone')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                  <label class="text-black" for="email">Address</label>
+                  <input type="text" class="form-control" id="address" name="address" @error('address') is-invalid  @enderror placeholder="enter your address">
+                </div>
+                @error('address')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                  <label class="text-black" for="email">City</label>
+                  <input type="text" class="form-control" id="city" name="city" @error('city') is-invalid  @enderror placeholder="enter your city">
+                </div>
+                @error('city')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
+            </div>
+                </div>
+        <div class="form-group mb-5">
+                  <label class="text-black" for="message">order</label>
+                  <textarea name="order" class="form-control" id="order" cols="30" rows="5" @error('order') is-invalid  @enderror placeholder="you can order here"></textarea>
+                </div>
+                <div>
+                    @error('order')
+                    <span class="invalid-feedback" role="alert"><strong class="text-danger">{{ $message }}</strong></span>
+                    @enderror
                 </div>
 
-                <div class="form-group mb-5">
-                  <label class="text-black" for="message">Message</label>
-                  <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
-                </div>
 
                 <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
               </form>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-
     </div>
-  </div>
-
+</div>
   <!-- End Contact Form -->
 @endsection
 

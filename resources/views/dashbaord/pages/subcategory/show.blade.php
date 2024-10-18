@@ -10,14 +10,13 @@
             <form method="post">
                 @csrf
                 @method('DELETE')
-                <a class="btn btn-success mx-1 p-1"  href="{{ route('Subcategories.edit' , $subcategory->id) }}"><i class="fa-solid fa-edit"></i> Edit</a>
+                <a class="btn btn-success mx-1 p-1"  href="{{ route('subcategories.edit' , $subcategory->id) }}"><i class="fa-solid fa-edit"></i> Edit</a>
                 <button class="btn btn-danger mx-1 p-1"><i class="fa-solid fa-trash-alt p-1"></i>Delete</button>
                 <p class="mt-4">
-                    <a class="btn btn-info" href="{{ route('Subcategories.index') }}">Return To subcategory</a>
+                    <a class="btn btn-info" href="{{ route('subcategories.index') }}">Return To subcategory</a>
                 </p>
             </form>
         </div>
     </div>
 </div>
-
 @endsection

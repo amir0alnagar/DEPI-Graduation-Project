@@ -41,8 +41,8 @@
 <body @if ( LaravelLocalization::getCurrentLocale() == "ar" ) class="rtl" @else class="ltr"  @endif>
 @include('dashbaord.includes.header')
 @include('dashbaord.includes.sidebar')
-<main id="main">@yield('content')
-</main>
+
+<main id="main">@yield('content')</main>
 
 @include("dashbaord.includes.footer")
   <!-- Vendor JS Files -->

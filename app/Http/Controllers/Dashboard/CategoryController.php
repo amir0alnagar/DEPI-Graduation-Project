@@ -34,7 +34,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'          => 'required|string|unique:categories,title|max:255',
+            'title'          => 'required|string|unique:categories,title|min:3|max:255',
             'description'    => 'nullable|string|max:1020',
             'create_user_id' => 'nullable|exists:users,id',
             'update_user_id' => 'nullable|exists:users,id',

@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => "Amir elnagar",
-            'email' => "amir@gmail.com",
+            'name' => "Admin",
+            'email' => "admin@gmail.com",
             'password' => bcrypt('123456789'),
             'user_type' => "admin",
             'created_at' =>Carbon::now()->toDateTimeString(),

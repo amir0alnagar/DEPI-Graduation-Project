@@ -1,16 +1,8 @@
 <?php
 
-use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\DashboardMainController;
-use App\Http\Controllers\Dashboard\SubCategoryController;
-use App\Http\Controllers\website\AboutController;
-use App\Http\Controllers\website\BlogController;
-use App\Http\Controllers\website\CartController;
-use App\Http\Controllers\website\ContactController;
-use App\Http\Controllers\website\HomeController;
-use App\Http\Controllers\website\ServicesController;
-use App\Http\Controllers\website\ShopController;
-use App\Models\SubCategory;
+use App\Http\Controllers\Dashboard\{CategoryController,DashboardMainController , OrderController, ProductController ,SubCategoryController, UserController};
+use App\Http\Controllers\website\{BlogController ,CartController ,MainController,ShopController};
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -32,11 +24,12 @@ Route::group(
 	'prefix' => LaravelLocalization::setLocale(),
 	'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ], function(){
-    Route::get('/welcome', [HomeController::class, 'welcome'])->name('welcome');
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/contact_us', [ContactController::class, 'index'])->name('contact_us');
-Route::get('/services', [ServicesController::class, 'index'])->name('services');
+    Route::get('/welcome', [MainController::class, 'welcome'])->name('welcome');
+Route::get('/', [MainController::class, 'home'])->name('home');
+Route::get('/about', [MainController::class, 'about'])->name('about');
+Route::get('/contact_us', [MainController::class, 'contact'])->name('contact_us');
+Route::post('/contact', [MainController::class, 'store'])->middleware('auth')->name('contact.store');
+Route::get('/services', [MainController::class, 'services'])->name('services');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -54,19 +47,22 @@ Route::get('/app', [CartController::class, 'app'])->name('app');
                 Route::get('/category/delete' , [CategoryController::class , 'delete'])->name('categories.delete');
                 Route::get('/category/restore/{id}' ,[CategoryController::class , 'restore'])->name('categories.restore');
                 Route::delete('/category/forceDelete/{id}' , [CategoryController::class , 'forceDelete'])->name('categories.forceDelete');
-                ///////////////////////////
-                Route::resource('/subcategory', SubCategoryController::class);
-                Route::get('/subcategory/delete' , [SubCategoryController::class , 'delete'])->name('subcategories.delete');
+
+                Route::resource('/subcategories', SubCategoryController::class);
+                Route::get('/subcategory/delete' , [SubCategoryController::class , 'delete'])->name('subcategory.delete');
                 Route::get('/subcategory/restore/{id}' ,[SubCategoryController::class , 'restore'])->name('subcategories.restore');
-              Route::delete('/subcategory/forceDelete/{id}' , [SubCategoryController::class , 'forceDelete'])->name('Subcategories.forceDelete');
-              Route::get('/subcategory', [SubCategory::class])->name('subcategory.index');
+                Route::delete('/subcategory/forceDelete/{id}' , [SubCategoryController::class , 'forceDelete'])->name('subcategories.forceDelete');
 
+                Route::resource('/products', ProductController::class);
+                Route::get('/product/delete',[ProductController::class, 'delete'])->name('products.delete');
+                Route::get('/product/restore/{id}', [ProductController::class, 'restore'])->name('products.restore');
+                Route::delete('/product/forceDelete/{id}', [ProductController::class,'forceDelete'])->name('products.forceDelete');
 
+                Route::get('/orders/index',[OrderController::class , 'index'] )->name('orders.index');
 
-
-
-              Route::post('/subcategory', [SubcategoryController::class, 'store'])->name('subcategory.store');
-
+                Route::get('/admins/index', [UserController::class , 'admins'])->name('admins.index');
+                Route::get('/moderators/index', [UserController::class , 'moderators'])->name('moderators.index');
+                Route::get('/customer/index', [UserController::class , 'customers'])->name('customers.index');
                 });
         });
 });
